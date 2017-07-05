@@ -12,18 +12,26 @@ class TodoApp extends React.Component {
   constructor(props){
     super(props),
     this.state={
-      todos:[{taskText:'Do computer science', completed: false},
-      {taskText:'Do science computer', completed: true},
-      {taskText:'Do more', completed: false}]
+      todos:dummyData
     }
   }
   addTodo(task){
     // task is a string
-    var tempArr= this.state.todos;
-    tempArr.push({taskText:task,completed:false});
+    dummyData.push({taskText:task,completed:false});
     this.setState({
-      todos:tempArr
+      todos:dummyData
     })
+  }
+  removeTodo(index){
+    dummyData.splice(index,1);
+    this.setState({
+      todos:dummyData
+    })
+    console.log(dummyData);
+  }
+  toggleTodo(index){
+    dummyData[index].completed=!dummyData[index].completed;
+    this.setState({todos:dummyData})
   }
   componentDidMount(){
     // this.setState({todos:dummyData})
@@ -32,7 +40,8 @@ class TodoApp extends React.Component {
     return(
       <div>
           <InputLine submit={(e)=>(this.addTodo(e))}/>
-          <TodoList todos={this.state.todos}/>
+          <TodoList todos={this.state.todos} todoXclick={(i)=>this.removeTodo(i)}
+            todoClick={(i)=>this.toggleTodo(i)}/>
                           </div>
     )
   }

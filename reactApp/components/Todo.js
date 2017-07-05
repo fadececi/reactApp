@@ -5,13 +5,13 @@ class Todo extends React.Component {
   render(){
     if(this.props.todo.completed){
       return(<li>
-        <button>X</button>
-        {'  '}<strike>{this.props.todo.taskText}</strike>
+        <button onClick={()=>this.props.xClick()}>X</button>
+        {'  '}<strike onClick={()=>this.props.textClick()}>{this.props.todo.taskText}</strike>
       </li>)
     } else {
       return(<li>
-        <button>X</button>
-        {'  '}{this.props.todo.taskText}
+        <button onClick={()=>this.props.xClick()}>X</button>
+        {'  '}<span onClick={()=>this.props.textClick()}> {this.props.todo.taskText}</span>
       </li>)
     }
   }

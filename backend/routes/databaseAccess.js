@@ -1,6 +1,8 @@
 import express from 'express';
 const router = express.Router();
 
+// New line here
+
 router.get('/add', (req, res) => {
   const testTodo = new TodoItem({
     task: "test task"
@@ -13,7 +15,6 @@ router.get('/add', (req, res) => {
     .catch(error => {
       res.send(error);
     })
-  });
 });
 
 export default router;
